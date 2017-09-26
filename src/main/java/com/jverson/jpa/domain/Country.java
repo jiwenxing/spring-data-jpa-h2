@@ -28,6 +28,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Country {
@@ -53,7 +54,30 @@ public class Country {
 	@Column(nullable = false)
     private String countrycode;
 
-    /**
+	@Transient
+    private Integer page = 0;
+
+    @Transient
+    private Integer rows = 10;
+	
+    
+    public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getRows() {
+		return rows;
+	}
+
+	public void setRows(Integer rows) {
+		this.rows = rows;
+	}
+
+	/**
      * 获取名称
      *
      * @return countryname - 名称

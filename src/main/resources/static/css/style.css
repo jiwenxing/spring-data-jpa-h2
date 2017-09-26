@@ -22,31 +22,67 @@
  * THE SOFTWARE.
  */
 
-package com.jverson.jpa.service;
+* {
+    margin: 0;
+}
 
+html, body {
+    height: 100%;
+}
 
-import java.util.List;
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -155px;
+}
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
+.footer, .push {
+    height: 155px;
+}
 
-import com.jverson.jpa.domain.Country;
+table.gridtable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+    margin: 5px auto;
+}
 
-@Service
-public class CountryService {
+table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
 
-    @Autowired
-    private CountryRepository countryRepository;
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
 
-    public List<Country> getAll(Country country) {
-        return (List<Country>) countryRepository.findAll();
-    }
+.middle {
+    text-align: center;
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+}
 
-    public Page<Country> getAllByPage(int pageNumber,int pageSize){
-        Page<Country> sourceCodes= this.countryRepository.findAll(new PageRequest(pageNumber, pageSize, null));
-        return sourceCodes;
-    }
-    
+.info {
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    padding: 40px;
+}
+
+.info a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: green;
 }
