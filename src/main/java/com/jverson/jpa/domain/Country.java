@@ -35,13 +35,13 @@ public class Country {
 
 	@Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -112,5 +112,13 @@ public class Country {
     public void setCountrycode(String countrycode) {
         this.countrycode = countrycode;
     }
+
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", countryname=" + countryname + ", countrycode=" + countrycode + ", page=" + page
+				+ ", rows=" + rows + "]";
+	}
+    
+    
 
 }
