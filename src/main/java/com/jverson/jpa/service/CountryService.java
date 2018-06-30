@@ -28,12 +28,18 @@ package com.jverson.jpa.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jverson.jpa.domain.Country;
 
+@CacheConfig(cacheNames = "country")
 @Service
 public class CountryService {
 
@@ -48,5 +54,22 @@ public class CountryService {
         Page<Country> sourceCodes= this.countryRepository.findAll(new PageRequest(pageNumber, pageSize, null));
         return sourceCodes;
     }
+
+//    @Cacheable(cacheNames = "country", key = "#p0", condition = "#p0.length()>5")
+    @Cacheable(key="#p0")
+	public Country findByCountrycode(String countrycode) {
+		return countryRepository.findByCountrycode(countrycode);
+	}
+
+    @CachePut(key="#country.countrycode", condition="#result!=null")
+	public Country save(Country country) {
+		return countryRepository.save(country);
+	}
+
+	@CacheEvict(key="#country.countrycode") //必须和Cacheable的key相同
+	@Transactional
+	public void delete(Country country) {
+		countryRepository.delete(country);
+	}
     
 }
