@@ -10,7 +10,7 @@ import com.jverson.jpa.domain.Country;
 import com.jverson.jpa.service.CountryService;
 
 @Controller
-@RequestMapping("/countries")
+@RequestMapping(value = {"/", "/countries"})
 public class CountryController {
 
 	@Autowired
